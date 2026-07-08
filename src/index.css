@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #FFFFFF;
+  --bg-2: #F5F8FF;
+  --text: #0A1628;
+  --text-dim: #6B8BAA;
+  --blue: #0077CC;
+  --cyan: #00A3FF;
+  --navy: #0A1628;
+  --navy-mid: #0F2040;
+  --white: #FFFFFF;
+  --border: rgba(0,0,0,0.08);
+  --card-bg: #FFFFFF;
+  --shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.dark {
+  --bg: #0A1628;
+  --bg-2: #0F2040;
+  --text: #FFFFFF;
+  --text-dim: #8BA3C0;
+  --border: rgba(255,255,255,0.08);
+  --card-bg: rgba(255,255,255,0.04);
+  --shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+@theme {
+  --color-app-bg: var(--bg);
+  --color-app-bg2: var(--bg-2);
+  --color-app-text: var(--text);
+  --color-app-text-dim: var(--text-dim);
+  --color-app-blue: var(--blue);
+  --color-app-cyan: var(--cyan);
+  --color-app-navy: var(--navy);
+  --color-app-navy-mid: var(--navy-mid);
+  --color-app-white: var(--white);
+  --color-app-border: var(--border);
+  --color-app-card-bg: var(--card-bg);
+  --shadow-app-shadow: var(--shadow);
+}
+
+/* Apply default theme colors to HTML/body */
+html, body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
