@@ -1,15 +1,782 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>شركة النور للخدمات الفنية | Al-Nour Cooling & Technical Services</title>
-    <meta name="description" content="شركة النور للخدمات الفنية - متخصصون في صيانة وتصليح جميع أنواع المكيفات في دبي، الشارقة، عجمان وباقي الإمارات. كشف مجاني وضمان على جميع الخدمات الفنية." />
-    <meta name="keywords" content="صيانة مكيفات دبي, تصليح مكيفات الشارقة, صيانة تكييف عجمان, شركة النور للخدمات الفنية, صيانة تكييف الإمارات" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>شركة النور للخدمات الفنية | Al-Nour Cooling & Technical Services</title>
+  <meta name="description" content="شركة النور للخدمات الفنية - متخصصون في صيانة وتصليح جميع أنواع المكيفات في دبي، الشارقة، عجمان وباقي الإمارات. كشف مجاني وضمان على جميع الخدمات الفنية.">
+  <meta name="keywords" content="صيانة مكيفات دبي, تصليح مكيفات الشارقة, صيانة تكييف عجمان, شركة النور للخدمات الفنية, صيانة تكييف الإمارات">
 
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            app: {
+              blue: '#0077CC',
+              cyan: '#00A3FF',
+              navy: '#0A1628',
+              'navy-mid': '#0F2040',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts support for Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* 2. Primary Light CSS Variables */
+    :root {
+      --bg: #FFFFFF;
+      --bg-2: #F5F8FF;
+      --text: #0A1628;
+      --text-dim: #6B8BAA;
+      --blue: #0077CC;
+      --cyan: #00A3FF;
+      --navy: #0A1628;
+      --navy-mid: #0F2040;
+      --white: #FFFFFF;
+      --border: rgba(0,0,0,0.08);
+      --card-bg: #FFFFFF;
+      --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    /* 3. Dark Mode CSS Variables */
+    .dark {
+      --bg: #0A1628;
+      --bg-2: #0F2040;
+      --text: #FFFFFF;
+      --text-dim: #8BA3C0;
+      --border: rgba(255,255,255,0.08);
+      --card-bg: rgba(255,255,255,0.04);
+      --shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .custom-border {
+      border-color: var(--border);
+    }
+
+    .custom-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .custom-bg2 {
+      background-color: var(--bg-2);
+    }
+
+    /* Floating WhatsApp keyframes */
+    @keyframes ripple {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.4); opacity: 0; }
+    }
+    .ripple-active::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: #25D366;
+      border-radius: 50%;
+      z-index: -1;
+      animation: ripple 1.8s infinite ease-out;
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-12 overflow-x-hidden">
+
+  <!-- ==================== 1. FIXED BLURRED HEADER ==================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 h-[84px] custom-border border-b bg-opacity-80 backdrop-blur-[12px] flex items-center transition-all duration-300 shadow-sm" style="background-color: rgba(var(--bg), 0.8);">
+    <div class="container mx-auto px-4 md:px-8 flex items-center justify-between">
+
+      <!-- Brand Logo Section -->
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-xl bg-app-blue flex items-center justify-center text-white shadow-md cursor-pointer hover:bg-opacity-95 transition-all">
+          <span class="text-2xl">❄️</span>
+        </div>
+        <div class="flex flex-col">
+          <h1 class="font-extrabold text-base md:text-lg tracking-tight flex items-center gap-1">
+            <span data-ar="شركة النور للخدمات الفنية" data-en="Al-Nour Technical Services">شركة النور للخدمات الفنية</span>
+          </h1>
+          <p class="text-[10px] md:text-xs text-slate-400 leading-none">
+            <span data-ar="الريادة في التكييف" data-en="AC & Cooling Excellence">الريادة في التكييف</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Action Area controllers -->
+      <div class="flex items-center gap-2 md:gap-3">
+
+        <!-- Language Switch trigger -->
+        <button id="lang-btn" class="flex items-center gap-1.5 px-3 py-2 rounded-lg border custom-border bg-white text-xs font-bold transition-all hover:border-app-blue active:scale-95 cursor-pointer text-slate-800 dark:text-slate-100 dark:bg-slate-800">
+          <span>🌐</span>
+          <span id="lang-text">EN</span>
+        </button>
+
+        <!-- Separate Light / Dark mode button -->
+        <button id="theme-btn" class="flex items-center gap-1.5 px-3 py-2 rounded-lg border custom-border bg-white text-xs font-bold transition-all hover:border-app-blue active:scale-95 cursor-pointer text-slate-800 dark:text-slate-100 dark:bg-slate-800">
+          <span id="theme-icon">🌙</span>
+          <span id="theme-text" data-ar="مظهر داكن" data-en="Dark">مظهر داكن</span>
+        </button>
+
+        <!-- WhatsApp Button #25D366 -->
+        <a href="https://wa.me/971505075707" target="_blank" class="flex items-center gap-1.5 px-3 py-2.5 rounded-lg text-white font-bold text-xs md:text-sm shadow-md transition-all active:scale-95 hover:brightness-110" style="background-color: #25D366;">
+          <span>💬</span>
+          <span class="hidden sm:inline" data-ar="واتساب" data-en="WhatsApp">واتساب</span>
+        </a>
+
+        <!-- Call Button (Blue) -->
+        <a href="tel:0505075707" class="flex items-center gap-1.5 px-3 py-2.5 rounded-lg text-white bg-app-blue font-bold text-xs md:text-sm shadow-md transition-all active:scale-95 hover:brightness-110">
+          <span>📞</span>
+          <span class="hidden sm:inline" data-ar="اتصل الحين" data-en="Call Now">اتصل الحين</span>
+        </a>
+
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- ==================== 2. HERO AREA WITH FORM BLOCK ==================== -->
+  <main class="pt-32 pb-16 md:pt-40 md:pb-24 px-4 md:px-8 max-w-7xl mx-auto w-full">
+
+    <!-- Stage 2 Responsive Layout Grid (adapt to 1 column under 900px) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+
+      <!-- Left Content Info (Span 7/12) -->
+      <div class="lg:col-span-7 flex flex-col items-start text-right">
+
+        <!-- Badge -->
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100 dark:bg-blue-900/30 text-app-blue font-bold text-xs md:text-sm mb-6 border border-blue-200 dark:border-blue-800">
+          <span>⭐</span>
+          <span data-ar="كشف مجاني • خبرة 5 سنين • ضمان على الشغل" data-en="Free Inspection • 5 Years Experience • Guaranteed Work">
+            كشف مجاني • خبرة 5 سنين • ضمان على الشغل
+          </span>
+        </span>
+
+        <!-- Heading -->
+        <h2 class="text-3xl md:text-5xl lg:text-6xl font-black leading-tight mb-6 tracking-tight text-slate-900 dark:text-white">
+          <span data-ar="مكيفك خربان؟ نصلحه الحين بضمان ✓" data-en="AC Broken? We Fix It Now With Warranty ✓">
+            مكيفك خربان؟ نصلحه الحين بضمان ✓
+          </span>
+        </h2>
+
+        <!-- Sub-header -->
+        <p class="text-base md:text-lg text-slate-500 dark:text-slate-300 mb-8 leading-relaxed font-medium">
+          <span data-ar="شركة النور للخدمات الفنية — متخصصين في صيانة وتصليح كل أنواع المكيفات في دبي والشارقة وعجمان وباقي الإمارات. كشف مجاني وما تدفع شي لو ما عجبك الشغل." data-en="Al-Nour Technical Services — Specialists in repair and maintenance of all AC types across Dubai, Sharjah, Ajman and all UAE. Free inspection, no charge if not satisfied.">
+            شركة النور للخدمات الفنية — متخصصين في صيانة وتصليح كل أنواع المكيفات في دبي والشارقة وعجمان وباقي الإمارات. كشف مجاني وما تدفع شي لو ما عجبك الشغل.
+          </span>
+        </p>
+
+        <!-- Bullet Points -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full mb-8">
+
+          <div class="flex items-center gap-2.5 bg-white dark:bg-white/5 border custom-border p-3.5 rounded-xl font-bold text-sm text-slate-800 dark:text-slate-100">
+            <span class="text-emerald-500">✓</span>
+            <span data-ar="كشف مجاني بدون أي التزام" data-en="Free inspection, no obligation">كشف مجاني بدون أي التزام</span>
+          </div>
+
+          <div class="flex items-center gap-2.5 bg-white dark:bg-white/5 border custom-border p-3.5 rounded-xl font-bold text-sm text-slate-800 dark:text-slate-100">
+            <span class="text-emerald-500">✓</span>
+            <span data-ar="ضمان على كل الأشغال" data-en="Warranty on all work">ضمان على كل الأشغال</span>
+          </div>
+
+          <div class="flex items-center gap-2.5 bg-white dark:bg-white/5 border custom-border p-3.5 rounded-xl font-bold text-sm text-slate-800 dark:text-slate-100">
+            <span class="text-emerald-500">✓</span>
+            <span data-ar="خبرة 5 سنين في الإمارات" data-en="5 years experience in UAE">خبرة 5 سنين في الإمارات</span>
+          </div>
+
+          <div class="flex items-center gap-2.5 bg-white dark:bg-white/5 border custom-border p-3.5 rounded-xl font-bold text-sm text-slate-800 dark:text-slate-100">
+            <span class="text-emerald-500">✓</span>
+            <span data-ar="وصول سريع لعندك" data-en="Fast response to your location">وصول سريع لعندك</span>
+          </div>
+
+          <div class="flex items-center gap-2.5 bg-white dark:bg-white/5 border custom-border p-3.5 rounded-xl font-bold text-sm text-slate-800 dark:text-slate-100 col-span-1 sm:col-span-2">
+            <span class="text-emerald-500">✓</span>
+            <span data-ar="خدمة VIP للطوارئ" data-en="VIP emergency service">خدمة VIP للطوارئ</span>
+          </div>
+
+        </div>
+
+        <!-- Tech Photo Image -->
+        <div class="relative w-full rounded-2xl overflow-hidden shadow-lg border custom-border max-w-2xl bg-gray-900">
+          <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800" alt="Technical Work Repair AC Dubai" class="w-full h-64 md:h-80 object-cover hover:scale-102 transition-all duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6 justify-between text-white">
+            <p class="font-bold text-sm" data-ar="صيانة معتمدة لضمان أطول عمر لجهازك" data-en="Certified repair prolongs client setup">صيانة معتمدة لضمان أطول عمر لجهازك</p>
+            <span class="bg-app-blue px-2.5 py-1 rounded text-xs font-bold">24/7 Service</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right WhatsApp Booking Form Column (Span 5/12) -->
+      <div class="lg:col-span-5 w-full">
+
+        <div class="custom-card rounded-2xl p-6 md:p-8">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="text-3xl">💬</span>
+            <div>
+              <h3 class="font-extrabold text-lg text-slate-800 dark:text-white" data-ar="احجز كشفك المجاني الحين" data-en="Book Your Free Inspection Now">
+                احجز كشفك المجاني الحين
+              </h3>
+              <p class="text-xs text-slate-400" data-ar="سجل بياناتك وسيتم توجيهك فوراً للواتساب للتأكيد" data-en="Fill form, get direct WhatsApp scheduling confirmation">
+                سجل بياناتك وسيتم توجيهك فوراً للواتساب للتأكيد
+              </p>
+            </div>
+          </div>
+
+          <!-- The static booking form -->
+          <form id="whatsappForm" class="space-y-4">
+
+            <!-- Field: Name -->
+            <div>
+              <label class="block text-xs font-bold text-slate-400 mb-1.5 uppercase tracking-wider" data-ar="الاسم" data-en="Name">الاسم</label>
+              <input type="text" id="form-name" required placeholder="مثال: محمد العامري" class="w-full px-4 py-3 rounded-xl border custom-border bg-slate-50 dark:bg-slate-900/40 text-sm focus:outline-none focus:border-app-blue">
+            </div>
+
+            <!-- Field: WhatsApp Phone Number -->
+            <div>
+              <label class="block text-xs font-bold text-slate-400 mb-1.5 uppercase tracking-wider" data-ar="رقم الواتساب" data-en="WhatsApp Number">رقم الواتساب</label>
+              <input type="tel" id="form-phone" required placeholder="05XXXXXXXX" class="w-full px-4 py-3 rounded-xl border custom-border bg-slate-50 dark:bg-slate-900/40 text-sm focus:outline-none focus:border-app-blue text-left" dir="ltr">
+            </div>
+
+            <!-- Field: Dropdown Problem -->
+            <div>
+              <label class="block text-xs font-bold text-slate-400 mb-1.5 uppercase tracking-wider" data-ar="المشكلة" data-en="The Problem">المشكلة</label>
+              <select id="form-problem" class="w-full px-4 py-3 rounded-xl border custom-border bg-slate-50 dark:bg-slate-900/40 text-sm focus:outline-none focus:border-app-blue cursor-pointer">
+                <option value="مكيف ما يبرد" data-ar="مكيف ما يبرد" data-en="Poor Cooling">مكيف ما يبرد</option>
+                <option value="تسريب مياه" data-ar="تسريب مياه" data-en="Water Leak">تسريب مياه</option>
+                <option value="صوت غريب" data-ar="صوت غريب" data-en="Strange Noise">صوت غريب</option>
+                <option value="تنظيف" data-ar="تنظيف" data-en="Cleaning">تنظيف</option>
+                <option value="شحن فريون" data-ar="شحن فريون" data-en="Gas Refill">شحن فريون</option>
+                <option value="تركيب جديد" data-ar="تركيب جديد" data-en="New Installation">تركيب جديد</option>
+                <option value="غيره" data-ar="غيره" data-en="Other Problems">غيره</option>
+              </select>
+            </div>
+
+            <!-- Field: Dropdown Emirate -->
+            <div>
+              <label class="block text-xs font-bold text-slate-400 mb-1.5 uppercase tracking-wider" data-ar="الإمارة" data-en="The Emirate">الإمارة</label>
+              <select id="form-emirate" class="w-full px-4 py-3 rounded-xl border custom-border bg-slate-50 dark:bg-slate-900/40 text-sm focus:outline-none focus:border-app-blue cursor-pointer">
+                <option value="دبي" data-ar="دبي" data-en="Dubai">دبي</option>
+                <option value="الشارقة" data-ar="الشارقة" data-en="Sharjah">الشارقة</option>
+                <option value="عجمان" data-ar="عجمان" data-en="Ajman">عجمان</option>
+                <option value="أم القيوين" data-ar="أم القيوين" data-en="UAQ">أم القيوين</option>
+                <option value="الفجيرة" data-ar="الفجيرة" data-en="Fujairah">الفجيرة</option>
+                <option value="رأس الخيمة" data-ar="رأس الخيمة" data-en="RAK">رأس الخيمة</option>
+              </select>
+            </div>
+
+            <!-- Form dispatch btn -->
+            <button type="submit" class="w-full flex items-center justify-center gap-2 py-4 rounded-xl text-white font-bold text-base cursor-pointer hover:bg-opacity-95 shadow" style="background-color: #25D366;">
+              <span data-ar="💬 احجز كشفك المجاني الحين" data-en="💬 Book Your Free Inspection Now">💬 احجز كشفك المجاني الحين</span>
+            </button>
+
+          </form>
+
+          <!-- Stats list stage 2 Under Form container -->
+          <div class="mt-6 pt-5 border-t border-dashed custom-border grid grid-cols-4 gap-2 text-[10px] md:text-xs text-center font-bold text-slate-400">
+            <div>
+              <p class="text-app-blue font-black">5+ Years</p>
+              <span data-ar="سنين خبرة" data-en="Years Exp.">سنين خبرة</span>
+            </div>
+            <div class="border-r custom-border">
+              <p class="text-app-blue font-black">6</p>
+              <span data-ar="إمارات" data-en="Emirates">إمارات</span>
+            </div>
+            <div class="border-r custom-border">
+              <p class="text-app-blue font-black">24/7</p>
+              <span data-ar="خدمة VIP" data-en="VIP Service">خدمة VIP</span>
+            </div>
+            <div class="border-r custom-border">
+              <p class="text-emerald-500 font-black">✓</p>
+              <span data-ar="ضمان" data-en="Warranty">ضمان</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- ==================== 3. SERVICES SECTION ==================== -->
+  <section class="py-16 md:py-24 bg-slate-50 dark:bg-slate-900/30 border-y custom-border">
+    <div class="container mx-auto px-4 md:px-8 max-w-7xl">
+
+      <div class="text-center mb-16">
+        <span class="text-xs md:text-sm font-extrabold text-app-blue bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-full uppercase tracking-wider" data-ar="🔧 خدماتنا" data-en="🔧 Our Services">🔧 خدماتنا</span>
+        <h2 class="text-2xl md:text-4xl font-black text-slate-900 dark:text-white mt-3" data-ar="كل مشاكل مكيفك نحلّها بضمان" data-en="Every AC Problem, Fixed With Warranty">كل مشاكل مكيفك نحلّها بضمان</h2>
+        <div class="w-12 h-1 bg-app-blue mx-auto mt-4 rounded"></div>
+      </div>
+
+      <!-- 6 Service Cards Grid (Adaptive at 900px to 2 cols, 1 col under 520px) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Card 1 -->
+        <div class="custom-card rounded-2xl overflow-hidden hover:border-app-blue/40 duration-300">
+          <div class="h-48 overflow-hidden bg-gray-100">
+            <img src="https://images.unsplash.com/photo-1545259741-2ea3ebf61fa3?w=500" alt="Poor Cooling" class="w-full h-full object-cover">
+          </div>
+          <div class="p-5 text-right">
+            <h3 class="font-extrabold text-lg text-slate-900 dark:text-white mb-2" data-ar="ضعف التبريد وشحن الفريون" data-en="Poor Cooling & Gas Refill">ضعف التبريد وشحن الفريون</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-300 leading-relaxed font-medium" data-ar="نفحص مستوى الفريون ونشحنه بالكمية الصح لضمان تبريد ممتاز" data-en="We check & refill gas to the right level for optimal cooling">نفحص مستوى الفريون ونشحنه بالكمية الصح لضمان تبريد ممتاز</p>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="custom-card rounded-2xl overflow-hidden hover:border-app-blue/40 duration-300">
+          <div class="h-48 overflow-hidden bg-gray-100">
+            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=500" alt="Water Leak" class="w-full h-full object-cover">
+          </div>
+          <div class="p-5 text-right">
+            <h3 class="font-extrabold text-lg text-slate-900 dark:text-white mb-2" data-ar="تسريب مياه من المكيف" data-en="Water Leakage Fix">تسريب مياه من المكيف</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-300 leading-relaxed font-medium" data-ar="نحدد مصدر التسريب ونصلحه بسرعة قبل ما يسبب أضرار أكبر" data-en="We locate and fix leaks fast before they cause more damage">نحدد مصدر التسريب ونصلحه بسرعة قبل ما يسبب أضرار أكبر</p>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="custom-card rounded-2xl overflow-hidden hover:border-app-blue/40 duration-300">
+          <div class="h-48 overflow-hidden bg-gray-100">
+            <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=500" alt="AC Noise Vibration" class="w-full h-full object-cover">
+          </div>
+          <div class="p-5 text-right">
+            <h3 class="font-extrabold text-lg text-slate-900 dark:text-white mb-2" data-ar="صوت غريب من الجهاز" data-en="Noise & Vibration Fix">صوت غريب من الجهاز</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-300 leading-relaxed font-medium" data-ar="نشخص سبب الصوت الغريب سواء من الوحدة الداخلية أو الخارجية" data-en="We diagnose unusual sounds from indoor or outdoor unit">نشخص سبب الصوت الغريب سواء من الوحدة الداخلية أو الخارجية</p>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="custom-card rounded-2xl overflow-hidden hover:border-app-blue/40 duration-300">
+          <div class="h-48 overflow-hidden bg-gray-100">
+            <img src="https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=500" alt="Full Cleaning service" class="w-full h-full object-cover">
+          </div>
+          <div class="p-5 text-right">
+            <h3 class="font-extrabold text-lg text-slate-900 dark:text-white mb-2" data-ar="تنظيف شامل للمكيف" data-en="Full AC Cleaning">تنظيف شامل للمكيف</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-300 leading-relaxed font-medium" data-ar="تنظيف الفلاتر والكويل والفان بمواد متخصصة لهواء نقي ونظيف" data-en="Full filter, coil & fan clean with specialist products">تنظيف الفلاتر والكويل والفان بمواد متخصصة لهواء نقي ونظيف</p>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="custom-card rounded-2xl overflow-hidden hover:border-app-blue/40 duration-300">
+          <div class="h-48 overflow-hidden bg-gray-100">
+            <img src="https://images.unsplash.com/photo-1549576490-b0b4831ef60a?w=500" alt="VIP support service status" class="w-full h-full object-cover">
+          </div>
+          <div class="p-5 text-right">
+            <h3 class="font-extrabold text-lg text-slate-900 dark:text-white mb-2" data-ar="خدمة VIP طارئة" data-en="VIP Emergency Service">خدمة VIP طارئة</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-300 leading-relaxed font-medium" data-ar="خدمة سريعة بأولوية عالية للحالات الطارئة نوصلك بأسرع" data-en="High-priority fast service for emergencies, we arrive ASAP">خدمة سريعة بأولوية عالية للحالات الطارئة نوصلك بأسرع</p>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="custom-card rounded-2xl overflow-hidden hover:border-app-blue/40 duration-300">
+          <div class="h-48 overflow-hidden bg-gray-100">
+            <img src="https://images.unsplash.com/photo-1621905252507-b354bc25edac?w=500" alt="AC Install support" class="w-full h-full object-cover">
+          </div>
+          <div class="p-5 text-right">
+            <h3 class="font-extrabold text-lg text-slate-900 dark:text-white mb-2" data-ar="تركيب وصيانة دورية" data-en="Installation & Maintenance">تركيب وصيانة دورية</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-300 leading-relaxed font-medium" data-ar="تركيب المكيفات الجديدة وبرامج صيانة دورية للحفاظ" data-en="New AC installation and scheduled maintenance programs">تركيب المكيفات الجديدة وبرامج صيانة دورية للحفاظ</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==================== 4. WHY US SECTION ==================== -->
+  <section class="py-16 md:py-24 max-w-7xl mx-auto w-full px-4 md:px-8">
+
+    <div class="text-center mb-16">
+      <span class="text-xs md:text-sm font-extrabold text-app-cyan bg-blue-50 dark:bg-blue-950/30 px-3 py-1 rounded-full uppercase" data-ar="⭐ ليش النور؟" data-en="⭐ Why Al-Nour?">⭐ ليش النور؟</span>
+      <h2 class="text-2xl md:text-4xl font-black text-slate-900 dark:text-white mt-3" data-ar="اللي يميزنا عن أي محل ثاني" data-en="What Sets Us Apart">اللي يميزنا عن أي محل ثاني</h2>
+      <div class="w-12 h-1 bg-app-cyan mx-auto mt-4 rounded"></div>
+    </div>
+
+    <!-- 4 key distinct features -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <!-- F1 -->
+      <div class="custom-card p-6 rounded-2xl text-right flex flex-col justify-between hover:-translate-y-1 duration-300">
+        <span class="text-3xl mb-4 block">🔍</span>
+        <div>
+          <h3 class="font-bold text-base text-slate-900 dark:text-white mb-2" data-ar="كشف مجاني — ما تدفع ولا درهم" data-en="Free inspection — zero cost">كشف مجاني — ما تدفع ولا درهم</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-300 font-medium" data-ar="نيجيلك ونفحص المكيف مجاناً بدون أي التزام منك" data-en="We come to you and inspect your AC for free, no obligation">نيجيلك ونفحص المكيف مجاناً بدون أي التزام منك</p>
+        </div>
+      </div>
+
+      <!-- F2 -->
+      <div class="custom-card p-6 rounded-2xl text-right flex flex-col justify-between hover:-translate-y-1 duration-300">
+        <span class="text-3xl mb-4 block">✅</span>
+        <div>
+          <h3 class="font-bold text-base text-slate-900 dark:text-white mb-2" data-ar="ضمان على شغلنا — نرجع بدون أي كلام" data-en="Guaranteed work — we return free">ضمان على شغلنا — نرجع بدون أي كلام</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-300 font-medium" data-ar="كل شغلة نعملها عليها ضمان لو في أي مشكلة نرجع فوراً" data-en="Everything we do is warranted we return immediately if needed">كل شغلة نعملها عليها ضمان لو في أي مشكلة نرجع فوراً</p>
+        </div>
+      </div>
+
+      <!-- F3 -->
+      <div class="custom-card p-6 rounded-2xl text-right flex flex-col justify-between hover:-translate-y-1 duration-300">
+        <span class="text-3xl mb-4 block">⚡</span>
+        <div>
+          <h3 class="font-bold text-base text-slate-900 dark:text-white mb-2" data-ar="فنيين موزعين بكل الإمارات" data-en="Technicians across all Emirates">فنيين موزعين بكل الإمارات</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-300 font-medium" data-ar="عندنا فنيين في كل إمارة لضمان أسرع وقت وصول ليك" data-en="We have technicians in every emirate for fastest arrival">عندنا فنيين في كل إمارة لضمان أسرع وقت وصول ليك</p>
+        </div>
+      </div>
+
+      <!-- F4 -->
+      <div class="custom-card p-6 rounded-2xl text-right flex flex-col justify-between hover:-translate-y-1 duration-300">
+        <span class="text-3xl mb-4 block">💰</span>
+        <div>
+          <h3 class="font-bold text-base text-slate-900 dark:text-white mb-2" data-ar="أسعار واضحة — ما في مفاجآت" data-en="Clear prices — no surprises">أسعار واضحة — ما في مفاجآت</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-300 font-medium" data-ar="نعطيك السعر قبل الشغل مافي رسوم خفية أبداً" data-en="We quote before we start no hidden fees ever">نعطيك السعر قبل الشغل مافي رسوم خفية أبداً</p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ==================== 5. HOW IT WORKS SECTION ==================== -->
+  <section class="py-16 md:py-24 bg-slate-50 dark:bg-slate-900/30 border-y custom-border">
+    <div class="container mx-auto px-4 md:px-8 max-w-7xl">
+
+      <div class="text-center mb-16">
+        <span class="text-xs md:text-sm font-extrabold text-app-blue bg-blue-100 dark:bg-blue-900/30 px-3 py-1 rounded-full uppercase" data-ar="⚙️ كيف نشتغل" data-en="⚙️ How It Works">⚙️ كيف نشتغل</span>
+        <h2 class="text-2xl md:text-4xl font-black text-slate-900 dark:text-white mt-3" data-ar="3 خطوات بس وخلصنا" data-en="Just 3 Steps and Done">3 خطوات بس وخلصنا</h2>
+        <div class="w-12 h-1 bg-app-blue mx-auto mt-4 rounded"></div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- Step 1 -->
+        <div class="custom-card p-6 rounded-2xl text-center relative pt-12">
+          <span class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-app-blue text-white font-bold flex items-center justify-center border-4 border-white shadow">1</span>
+          <h3 class="font-extrabold text-lg text-slate-900 dark:text-white mb-2" data-ar="تواصل معنا عبر واتساب أو اتصال" data-en="Contact us via WhatsApp or Call">تواصل معنا عبر واتساب أو اتصال</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-300 font-medium" data-ar="كلمنا وقولنا المشكلة وين أنت" data-en="Tell us your issue and location">كلمنا وقولنا المشكلة وين أنت</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="custom-card p-6 rounded-2xl text-center relative pt-12">
+          <span class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-app-blue text-white font-bold flex items-center justify-center border-4 border-white shadow">2</span>
+          <h3 class="font-extrabold text-lg text-slate-900 dark:text-white mb-2" data-ar="الفني يوصلك بأسرع وقت" data-en="Technician arrives ASAP">الفني يوصلك بأسرع وقت</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 font-medium" data-ar="نبعتلك فني متخصص على طول" data-en="We dispatch a specialist immediately">نبعتلك فني متخصص على طول</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="custom-card p-6 rounded-2xl text-center relative pt-12">
+          <span class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-app-blue text-white font-bold flex items-center justify-center border-4 border-white shadow">3</span>
+          <h3 class="font-extrabold text-lg text-slate-900 dark:text-white mb-2" data-ar="نشخص ونصلح بضمان" data-en="We diagnose & fix with warranty">نشخص ونصلح بضمان</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 font-medium" data-ar="نحل المشكلة ونعطيك ضمان على الشغل" data-en="Problem solved with full warranty">نحل المشكلة ونعطيك ضمان على الشغل</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==================== 6. CITIES OF SERVICE ==================== -->
+  <section class="py-16 md:py-24 max-w-7xl mx-auto w-full px-4 md:px-8">
+
+    <div class="text-center mb-16">
+      <span class="text-xs md:text-sm font-extrabold text-app-blue bg-blue-50 dark:bg-blue-900/40 px-3 py-1 rounded-full uppercase" data-ar="📍 مناطق الخدمة" data-en="📍 Service Areas">📍 مناطق الخدمة</span>
+      <h2 class="text-2xl md:text-4xl font-black text-slate-900 dark:text-white mt-3" data-ar="نخدم 6 إمارات في الدولة" data-en="Serving 6 Emirates Across UAE">نخدم 6 إمارات في الدولة</h2>
+      <div class="w-12 h-1 bg-app-blue mx-auto mt-4 rounded"></div>
+    </div>
+
+    <!-- 6 covered UAE emirates custom cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Dubai -->
+      <div class="relative h-64 rounded-2xl overflow-hidden shadow bg-gray-900 flex items-end p-6 border custom-border group">
+        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=500" alt="Dubai skyline" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-102 transition duration-500">
+        <div class="relative z-10 text-right w-full">
+          <span class="text-xs font-bold text-[#00A3FF] tracking-wider uppercase bg-[#00A3FF]/10 px-2 py-1 rounded mb-2 inline-block">UAE</span>
+          <h3 class="text-2xl font-black text-white" data-ar="دبي" data-en="Dubai">دبي</h3>
+          <p class="text-xs text-slate-200" data-ar="تغطية كاملة لكل المناطق" data-en="Full coverage across all areas">تغطية كاملة لكل المناطق</p>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none"></div>
+      </div>
+
+      <!-- Sharjah -->
+      <div class="relative h-64 rounded-2xl overflow-hidden shadow bg-gray-900 flex items-end p-6 border custom-border group">
+        <img src="https://images.unsplash.com/photo-1544984243-ec57ea16fe25?w=500" alt="Sharjah architecture" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-102 transition duration-500">
+        <div class="relative z-10 text-right w-full">
+          <span class="text-xs font-bold text-emerald-400 tracking-wider uppercase bg-emerald-400/10 px-2 py-1 rounded mb-2 inline-block">UAE</span>
+          <h3 class="text-2xl font-black text-white" data-ar="الشارقة" data-en="Sharjah">الشارقة</h3>
+          <p class="text-xs text-slate-200" data-ar="خدمة سريعة بكل الأحياء" data-en="Fast service in all districts">خدمة سريعة بكل الأحياء</p>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none"></div>
+      </div>
+
+      <!-- Ajman -->
+      <div class="relative h-64 rounded-2xl overflow-hidden shadow bg-gray-900 flex items-end p-6 border custom-border group">
+        <img src="https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?w=500" alt="Ajman shoreline" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-102 transition duration-500">
+        <div class="relative z-10 text-right w-full">
+          <span class="text-xs font-bold text-amber-400 tracking-wider uppercase bg-amber-400/10 px-2 py-1 rounded mb-2 inline-block">UAE</span>
+          <h3 class="text-2xl font-black text-white" data-ar="عجمان" data-en="Ajman">عجمان</h3>
+          <p class="text-xs text-slate-200" data-ar="تغطية شاملة لعجمان" data-en="Full Ajman coverage">تغطية شاملة لعجمان</p>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none"></div>
+      </div>
+
+      <!-- Umm Al Quwain -->
+      <div class="relative h-64 rounded-2xl overflow-hidden shadow bg-gray-900 flex items-end p-6 border custom-border group">
+        <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=500" alt="UAQ UAE" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-102 transition duration-500">
+        <div class="relative z-10 text-right w-full">
+          <span class="text-xs font-bold text-orange-400 tracking-wider uppercase bg-orange-400/10 px-2 py-1 rounded mb-2 inline-block">UAE</span>
+          <h3 class="text-2xl font-black text-white" data-ar="أم القيوين" data-en="UAQ">أم القيوين</h3>
+          <p class="text-xs text-slate-200" data-ar="نوصلك بأسرع وقت" data-en="Fast arrival guaranteed">نوصلك بأسرع وقت</p>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none"></div>
+      </div>
+
+      <!-- Fujairah -->
+      <div class="relative h-64 rounded-2xl overflow-hidden shadow bg-gray-900 flex items-end p-6 border custom-border group">
+        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=500" alt="Fujairah hotel mountains" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-102 transition duration-500">
+        <div class="relative z-10 text-right w-full">
+          <span class="text-xs font-bold text-cyan-400 tracking-wider uppercase bg-cyan-400/10 px-2 py-1 rounded mb-2 inline-block">UAE</span>
+          <h3 class="text-2xl font-black text-white" data-ar="الفجيرة" data-en="Fujairah">الفجيرة</h3>
+          <p class="text-xs text-slate-200" data-ar="خدمة موثوقة في الفجيرة" data-en="Reliable service in Fujairah">خدمة موثوقة في الفجيرة</p>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none"></div>
+      </div>
+
+      <!-- Ras Al Khaimah -->
+      <div class="relative h-64 rounded-2xl overflow-hidden shadow bg-gray-900 flex items-end p-6 border custom-border group">
+        <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=500" alt="RAK UAE" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-102 transition duration-500">
+        <div class="relative z-10 text-right w-full">
+          <span class="text-xs font-bold text-rose-400 tracking-wider uppercase bg-rose-400/10 px-2 py-1 rounded mb-2 inline-block">UAE</span>
+          <h3 class="text-2xl font-black text-white" data-ar="رأس الخيمة" data-en="RAK">رأس الخيمة</h3>
+          <p class="text-xs text-slate-200" data-ar="فنيين متخصصين في رأس الخيمة" data-en="Expert technicians in RAK">فنيين متخصصين في رأس الخيمة</p>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none"></div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ==================== 7. HELPFUL ARTICLES (BLOG) ==================== -->
+  <section class="py-16 md:py-24 bg-slate-50 dark:bg-slate-900/30 border-y custom-border">
+    <div class="container mx-auto px-4 md:px-8 max-w-7xl">
+
+      <div class="text-center mb-16">
+        <span class="text-xs md:text-sm font-extrabold text-app-blue bg-blue-50 dark:bg-blue-900/40 px-3 py-1 rounded-full uppercase" data-ar="📝 المدونة" data-en="📝 Blog">📝 المدونة</span>
+        <h2 class="text-2xl md:text-4xl font-black text-slate-900 dark:text-white mt-3" data-ar="نصايح ومعلومات مفيدة" data-en="Tips & Useful Information">نصايح ومعلومات مفيدة</h2>
+        <div class="w-12 h-1 bg-app-blue mx-auto mt-4 rounded"></div>
+      </div>
+
+      <!-- 3 blog posts -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- Post 1 -->
+        <div class="custom-card rounded-xl overflow-hidden hover:shadow flex flex-col justify-between group">
+          <div class="h-48 overflow-hidden bg-gray-100">
+            <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=500" alt="Needs Service" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6 text-right flex-grow flex flex-col justify-between">
+            <div>
+              <h3 class="font-extrabold text-lg text-slate-900 dark:text-white mb-2 leading-snug" data-ar="كيف تعرف إن مكيفك يحتاج صيانة؟" data-en="How to Know If Your AC Needs Service">كيف تعرف إن مكيفك يحتاج صيانة؟</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-300 font-medium leading-relaxed mb-4" data-ar="لو مكيفك ما يبرد زين أو تسمع أصوات غريبة أو شايف مياه تسرب — هذي علامات إن مكيفك يحتاج صيانة عاجلة" data-en="If your AC isn't cooling well, making strange noises or leaking water — these are signs it needs urgent service">لو مكيفك ما يبرد زين أو تسمع أصوات غريبة أو شايف مياه تسرب — هذي علامات إن مكيفك يحتاج صيانة عاجلة</p>
+            </div>
+            <a href="https://wa.me/971505075707" target="_blank" class="text-xs font-black text-app-blue hover:underline self-end" data-ar="اقرأ أكتر ←" data-en="Read More →">اقرأ أكتر ←</a>
+          </div>
+        </div>
+
+        <!-- Post 2 -->
+        <div class="custom-card rounded-xl overflow-hidden hover:shadow flex flex-col justify-between group">
+          <div class="h-48 overflow-hidden bg-gray-100">
+            <img src="https://images.unsplash.com/photo-1545259742-b4ea8fea5600?w=500" alt="Split AC difference" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6 text-right flex-grow flex flex-col justify-between">
+            <div>
+              <h3 class="font-extrabold text-lg text-slate-900 dark:text-white mb-2 leading-snug" data-ar="الفرق بين السبليت والمركزي والشباك" data-en="Split vs Central vs Window AC">الفرق بين السبليت والمركزي والشباك</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-300 font-medium leading-relaxed mb-4" data-ar="كل نوع مكيف إله مميزاته واستخداماته الصح — اعرف الفرق وشوف أيهم يناسب بيتك أو مكتبك" data-en="Each AC type has its own advantages and best use cases — find out which suits your home or office">كل نوع مكيف إله مميزاته واستخداماته الصح — اعرف الفرق وشوف أيهم يناسب بيتك أو مكتبك</p>
+            </div>
+            <a href="https://wa.me/971505075707" target="_blank" class="text-xs font-black text-app-blue hover:underline self-end" data-ar="اقرأ أكتر ←" data-en="Read More →">اقرأ أكتر ←</a>
+          </div>
+        </div>
+
+        <!-- Post 3 -->
+        <div class="custom-card rounded-xl overflow-hidden hover:shadow flex flex-col justify-between group">
+          <div class="h-48 overflow-hidden bg-gray-100">
+            <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=500" alt="filter installation clean" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6 text-right flex-grow flex flex-col justify-between">
+            <div>
+              <h3 class="font-extrabold text-lg text-slate-900 dark:text-white mb-2 leading-snug" data-ar="ليش لازم تنظف مكيفك كل 3 شهور" data-en="Why Clean Your AC Every 3 Months">ليش لازم تنظف مكيفك كل 3 شهور</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 font-medium leading-relaxed mb-4" data-ar="التنظيف المنتظم يطول عمر المكيف ويوفر لك فلوس الكهرباء ويضمن لك هواء نظيف وصحي في بيتك" data-en="Regular cleaning extends your AC life saves electricity bills and ensures clean healthy air in your home">التنظيف المنتظم يطول عمر المكيف ويوفر لك فلوس الكهرباء ويضمن لك هواء نظيف وصحي في بيتك</p>
+            </div>
+            <a href="https://wa.me/971505075707" target="_blank" class="text-xs font-black text-app-blue hover:underline self-end" data-ar="اقرأ أكتر ←" data-en="Read More →">اقرأ أكتر ←</a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==================== 8. CTA STRIP BANNER ==================== -->
+  <section class="my-16 mx-4 md:mx-8 max-w-7xl lg:mx-auto">
+    <div class="rounded-3xl p-8 md:p-12 text-white flex flex-col lg:flex-row items-center justify-between gap-8 relative overflow-hidden shadow-lg" style="background-image: linear-gradient(135deg, #0077CC, #00A3FF);">
+
+      <div class="text-right w-full lg:w-auto relative z-10 flex-grow">
+        <h2 class="text-2xl md:text-3xl font-black mb-3" data-ar="مكيفك فيه مشكلة؟ تواصل معنا الحين!" data-en="AC Problem? Contact Us Now!">مكيفك فيه مشكلة؟ تواصل معنا الحين!</h2>
+        <p class="text-base md:text-lg text-white/95 font-bold" data-ar="كشف مجاني • رد سريع • ضمان على الشغل" data-en="Free Inspection • Fast Response • Guaranteed Work">كشف مجاني • رد سريع • ضمان على الشغل</p>
+      </div>
+
+      <div class="relative z-10 flex flex-wrap gap-4 shrink-0">
+
+        <!-- WA Btn -->
+        <a href="https://wa.me/971505075707" target="_blank" class="flex items-center gap-2 px-6 py-4 rounded-xl text-white font-black text-sm transition-all hover:scale-103" style="background-color: #25D366;">
+          💬 <span data-ar="💬 تواصل عبر واتساب" data-en="💬 Contact via WhatsApp">💬 تواصل عبر واتساب</span>
+        </a>
+
+        <!-- Call Btn -->
+        <a href="tel:0505075707" class="flex items-center gap-2 px-6 py-4 rounded-xl text-white font-black text-sm border-2 border-white hover:bg-white/10 transition-all">
+          📞 <span>0505075707</span>
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==================== 9. ELEGANT FOOTER BLOCK ==================== -->
+  <footer class="pt-12 pb-6 border-t custom-border bg-slate-50 dark:bg-slate-900/30">
+    <div class="container mx-auto px-4 md:px-8 max-w-7xl text-center text-slate-800 dark:text-slate-100">
+
+      <h3 class="font-extrabold text-xl mb-4" data-ar="شركة النور للخدمات الفنية" data-en="Al-Nour Technical Services">شركة النور للخدمات الفنية</h3>
+
+      <div class="mb-5">
+        <a href="tel:0505075707" class="inline-flex items-center gap-2 bg-blue-50 dark:bg-blue-900/40 text-app-blue py-2.5 px-5 rounded-lg font-bold text-base" dir="ltr">
+          📞 <span>0505075707</span>
+        </a>
+      </div>
+
+      <p class="text-sm font-bold text-slate-500 dark:text-slate-400 mb-8 max-w-xl mx-auto" data-ar="دبي • الشارقة • عجمان • أم القيوين • الفجيرة • رأس الخيمة" data-en="Dubai • Sharjah • Ajman • UAQ • Fujairah • RAK">
+        دبي • الشارقة • عجمان • أم القيوين • الفجيرة • رأس الخيمة
+      </p>
+
+      <div class="text-xs text-slate-400 pt-6 border-t custom-border">
+        <span data-ar="© 2025 شركة النور للخدمات الفنية — جميع الحقوق محفوظة" data-en="© 2025 Al-Nour Technical Services — All Rights Reserved">© 2025 شركة النور للخدمات الفنية — جميع الحقوق محفوظة</span>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ==================== 10. FLOATING WHATSAPP ELEMENT ==================== -->
+  <a href="https://wa.me/971505075707" target="_blank" class="ripple-active fixed bottom-[30px] left-[30px] z-50 w-[60px] h-[60px] rounded-full flex items-center justify-center text-white text-3xl shadow-2xl hover:scale-105 active:scale-95 transition-all" style="background-color: #25D366; animation: bounce 3s infinite;">
+    💬
+  </a>
+
+
+  <!-- ==================== INTERACTIVE JAVASCRIPT TRANSLATOR & THEME SWITCHER ==================== -->
+  <script>
+    // Theme Toggle implementation
+    const themeBtn = document.getElementById('theme-btn');
+    const themeIcon = document.getElementById('theme-icon');
+    const themeText = document.getElementById('theme-text');
+    let isDark = false;
+
+    themeBtn.addEventListener('click', () => {
+      isDark = !isDark;
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+        themeIcon.textContent = '☀️';
+        themeText.setAttribute('data-ar', 'مظهر فاتح');
+        themeText.setAttribute('data-en', 'Light Mode');
+        themeText.textContent = isArabic ? 'مظهر فاتح' : 'Light Mode';
+      } else {
+        document.documentElement.classList.remove('dark');
+        themeIcon.textContent = '🌙';
+        themeText.setAttribute('data-ar', 'مظهر داكن');
+        themeText.setAttribute('data-en', 'Dark Mode');
+        themeText.textContent = isArabic ? 'مظهر داكن' : 'Dark Mode';
+      }
+    });
+
+    // Language Toggle logic
+    const langBtn = document.getElementById('lang-btn');
+    const langText = document.getElementById('lang-text');
+    let isArabic = true;
+
+    function applyTranslations() {
+      // Toggle LTR/RTL
+      const dir = isArabic ? 'rtl' : 'ltr';
+      const lang = isArabic ? 'ar' : 'en';
+      document.documentElement.setAttribute('dir', dir);
+      document.documentElement.setAttribute('lang', lang);
+      document.body.setAttribute('dir', dir);
+
+      langText.textContent = isArabic ? 'EN' : 'العربية';
+
+      // Scan and replace all data tags
+      const transel = document.querySelectorAll("[data-ar][data-en]");
+      transel.forEach(el => {
+        el.textContent = isArabic ? el.getAttribute('data-ar') : el.getAttribute('data-en');
+      });
+
+      // Placeholders inputs translations update
+      const nameInput = document.getElementById('form-name');
+      if (nameInput) {
+        nameInput.placeholder = isArabic ? 'مثال: محمد العامري' : 'e.g. Mohammed Al Ameri';
+      }
+    }
+
+    langBtn.addEventListener('click', () => {
+      isArabic = !isArabic;
+      applyTranslations();
+    });
+
+    // WhatsApp Form Submit action
+    const form = document.getElementById('whatsappForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const clientName = document.getElementById('form-name').value;
+      const clientPhone = document.getElementById('form-phone').value;
+      const clientProblem = document.getElementById('form-problem').value;
+      const clientEmirate = document.getElementById('form-emirate').value;
+
+      if (!clientName || !clientPhone) {
+        alert(isArabic ? 'فضلاً أدخل الإسم ورقم الهاتف' : 'Please fill out your name and phone number');
+        return;
+      }
+
+      const textMsg = isArabic
+        ? `*طلب حجز كشف مجاني جديد (شركة النور)*\n\n👤 *الاسم:* ${clientName}\n📱 *الواتساب:* ${clientPhone}\n🔧 *المشكلة:* ${clientProblem}\n📍 *الإمارة:* ${clientEmirate}`
+        : `*New AC Free Inspection Order (Al-Nour)*\n\n👤 *Name:* ${clientName}\n📱 *Phone:* ${clientPhone}\n🔧 *Issue:* ${clientProblem}\n📍 *Emirate:* ${clientEmirate}`;
+
+      window.open(`https://wa.me/971505075707?text=${encodeURIComponent(textMsg)}`, '_blank');
+    });
+
+    // Initial load
+    applyTranslations();
+  </script>
+
+</body>
+</html>
